@@ -13,7 +13,7 @@ router.get("/delete/:employee_id", adminController.delete);
 
 router.post("/update", adminController.update);
 
-router.get("/reports", registrationController.reports);
+router.get("/reports", adminController.reports);
 
 
 

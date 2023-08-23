@@ -191,4 +191,22 @@ exports.delete = (req, res) => {
         }
       }
     );
+};
+
+exports.reports = (req, res) => {
+    db.query(
+      "SELECT u.email AS email, r.type_of_request AS type_of_request, r.message AS message, r.created_at AS created_at FROM users AS u INNER JOIN requests as r ON u.id = r.user_id;",
+      (err, result) => {
+        if (err) {
+          console.log(err);
+        } else {
+            console.log(result)
+          res.render("admin/reports", {
+            title: "Reports",
+            users: result,
+            totalReports: result.length
+          });
+        }
+      }
+    );
   };
