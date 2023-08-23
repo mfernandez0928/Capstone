@@ -2634,11 +2634,11 @@ progress {
 }
 
 .table-dark {
-  --bs-table-color: #fff;
-  --bs-table-bg: #344767;
-  --bs-table-border-color: #485976;
-  --bs-table-striped-bg: #3e506f;
-  --bs-table-striped-color: #fff;
+  --bs-table-color: black;
+  --bs-table-bg: #7CAEE0;
+  --bs-table-border-color: #8cc2f8;
+  --bs-table-striped-bg: #8cc2f8;
+  --bs-table-striped-color: black;
   --bs-table-active-bg: #485976;
   --bs-table-active-color: #fff;
   --bs-table-hover-bg: #435572;
@@ -10580,7 +10580,7 @@ fieldset:disabled .btn {
 }
 
 .bg-primary {
-  background-color: #5e72e4 !important;
+  background-color: #F3B340 !important;
 }
 
 .bg-secondary {

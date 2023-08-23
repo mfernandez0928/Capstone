@@ -2,6 +2,11 @@
 body {
   padding-top: 56px; /* To account for the fixed navbar height */
 }
+
+.palete {
+  background-color: #F3B340;
+}
+
 @media (max-width: 767px) {
   body {
     padding-top: 0; /* Remove padding on small screens */

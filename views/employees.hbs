@@ -6,7 +6,7 @@
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
         <!--          My css         -->
-    <link rel="stylesheet" href="/css/jstyle.css">
+    <link rel="stylesheet" href="/style.css">
 
         <!--     Fonts and icons     -->
     <link
@@ -384,7 +384,7 @@
                                         <div class="numbers">
                                         <p
                                             class="text-sm mb-0 text-uppercase font-weight-bold"
-                                        >Companies</p>
+                                        >Company</p>
                                         <h5 class="font-weight-bolder">
                                             1
                                         </h5>
@@ -440,16 +440,16 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row mb-3">
+                                <div class="row mb-3 text-center">
                                     {{#if error}}
-                                    <h1 class="alert alert-danger">{{error}}</h1>
+                                    <h1 class="alert alert-danger text-light">{{error}}</h1>
                                     {{/if}}
                                     {{#if message}}
-                                    <h1 class="alert alert-success">{{message}}</h1>
+                                    <h1 class="alert alert-success text-light">{{message}}</h1>
                                     {{/if}}
                                 </div>
                                 <div class="row">
-                                    <table class="table table-dark table-striped table-bordered">
+                                    <table class="table table-light table-striped table-bordered">
                                         <thead class="text-center">
                                             <tr>
                                                 <th scope="col">Name</th>
@@ -523,8 +523,8 @@
                                         <input type="text" name="first_name" id="first_name" placeholder="Enter First name" class="form-control mb-3"  required>
                                         <input type="text" name="last_name" id="last_name" placeholder="Enter Last Name" class="form-control mb-3"  required>
                                         <input type="email" name="email" id="email" placeholder="Enter Email" class="form-control mb-3"  required>
-                                        <input type="password" name="password" id="password" placeholder="Enter Password" class="form-control mb-3"  required>
-                                        <input type="password" name="cpassword" id="cpassword" placeholder="Confirm Password" class="form-control mb-3"  required>
+                                        {{!-- <input type="password" name="password" id="password" placeholder="Enter Password" class="form-control mb-3"  required>
+                                        <input type="password" name="cpassword" id="cpassword" placeholder="Confirm Password" class="form-control mb-3"  required> --}}
                                         <select name="shift_id" id="shift_id" class="form-select mb-3">
                                             <option value="">Select Shift</option>
                                             <option value="1">08:00 AM - 05:00 AM</option>

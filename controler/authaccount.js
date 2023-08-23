@@ -130,43 +130,72 @@ exports.add = (req, res) => {
       if (err) {
         consul.log(err);
       }
-      if (result.length > 0) {
-        return res.render("employees.hbs", {
-          error: "Email already in use.",
-          danger: "danger",
-        });
-      } else if (cpassword !== password) {
-        return res.render("employees.hbs", {
-          error: "Password does not match.",
-          danger: "danger",
-        });
-      }
-      const hashPassword = await bcrypt.hash(password, 8);
-      console.log(hashPassword);
-
-      db.query(
-        `INSERT INTO employee (first_name, last_name, email, password, shift) VALUES ('${first_name}','${last_name}','${email}','${hashPassword}','${shift_id}');`,
-        (err, results) => {
-          if (err) {
-            // console.log(results);
-            console.log(err);
-          } else {
-            db.query(
-              "SELECT e.employee_id as employee_id ,e.first_name as first_name, e.last_name as last_name, e.email as email, s.time_start as time_start, s.time_end as time_end FROM employee as e INNER JOIN shift as s ON e.shift = s.shift_id;",
-              (err, result) => {
-                // console.log(result);
-                res.render("employees.hbs", {
-                  title: "List of employees",
-                  users: result,
-                  message: "You have added employee.",
-                  success: "success",
-                  employeesCount: result.length,
-                });
-              }
-            );
+      if (email == result.email) {
+        // return res.render("employees.hbs", {
+        //   error: "Email already in use.",
+        //   danger: "danger",
+        // });
+        db.query(
+          "SELECT e.employee_id as employee_id ,e.first_name as first_name, e.last_name as last_name, e.email as email, s.time_start as time_start, s.time_end as time_end FROM employee as e INNER JOIN shift as s ON e.shift = s.shift_id;",
+          (err, result) => {
+            // console.log(result);
+            res.render("employees.hbs", {
+              title: "List of employees",
+              users: result,
+              error: "Email already in use.",
+              success: "success",
+              employeesCount: result.length,
+            });
           }
-        }
-      );
+        );
+      } 
+      // else if (cpassword !== password) {
+      //   return res.render("employees.hbs", {
+      //     error: "Password does not match.",
+      //     danger: "danger",
+      //   });
+      //   db.query(
+      //     "SELECT e.employee_id as employee_id ,e.first_name as first_name, e.last_name as last_name, e.email as email, s.time_start as time_start, s.time_end as time_end FROM employee as e INNER JOIN shift as s ON e.shift = s.shift_id;",
+      //     (err, result) => {
+      //       console.log(result);
+      //       res.render("employees.hbs", {
+      //         title: "List of employees",
+      //         users: result,
+      //         error: "Password does not match.",
+      //         success: "success",
+      //         employeesCount: result.length,
+      //       });
+      //     }
+      //   );
+      // }
+      // const hashPassword = await bcrypt.hash(password, 8);
+      // console.log(hashPassword);
+      else {
+        db.query(
+          `INSERT INTO employee (first_name, last_name, email, shift) VALUES ('${first_name}','${last_name}','${email}','${shift_id}');`,
+          (err, results) => {
+            if (err) {
+              // console.log(results);
+              console.log(err);
+            } else {
+              db.query(
+                "SELECT e.employee_id as employee_id ,e.first_name as first_name, e.last_name as last_name, e.email as email, s.time_start as time_start, s.time_end as time_end FROM employee as e INNER JOIN shift as s ON e.shift = s.shift_id;",
+                (err, result) => {
+                  // console.log(result);
+                  res.render("employees.hbs", {
+                    title: "List of employees",
+                    users: result,
+                    message: "You have added employee.",
+                    success: "success",
+                    employeesCount: result.length,
+                  });
+                }
+              );
+            }
+          }
+        );        
+      }
+
     }
   );
 };
