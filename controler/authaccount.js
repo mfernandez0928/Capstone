@@ -104,7 +104,7 @@ exports.dashboard = (req, res) => {
 
 exports.reports = (req, res) => {
   db.query(
-    "SELECT e.employee_id as employee_id ,e.first_name as first_name, e.last_name as last_name, e.email as email, s.time_start as time_start, s.time_end as time_end FROM employee as e INNER JOIN shift as s ON e.shift = s.shift_id;",
+    "SELECT u.email AS email, r.type_of_request AS type_of_request, r.message AS message, r.created_at AS created_at FROM users AS u INNER JOIN requests as r ON u.id = r.user_id;",
     (err, result) => {
       if (err) {
         console.log(err);
@@ -112,7 +112,7 @@ exports.reports = (req, res) => {
         res.render("reports.hbs", {
           title: "Reports",
           users: result,
-          employeesCount: result.length,
+          totalReports: result.length
         });
       }
     }
