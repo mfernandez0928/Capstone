@@ -20,4 +20,5 @@ app.use("/user", require("./routes/user"));
 
 app.listen(port, () => {
   console.log("Server is running.");
+  
 });
