@@ -1,17 +1,20 @@
 const express = require("express");
 const router = express.Router();
 const registrationController = require("../controler/authaccount");
+const adminController = require("../controllers/admin");
 
-router.get("/employees", registrationController.employees);
+router.get("/", adminController.dashboard);
 
-router.get("/delete/:employee_id", registrationController.delete);
+router.get("/employees", adminController.employees);
 
-router.post("/edit", registrationController.edit);
+router.post("/add", adminController.add);
 
-router.get("/dashboard", registrationController.dashboard);
+router.get("/delete/:employee_id", adminController.delete);
+
+router.post("/update", adminController.update);
 
 router.get("/reports", registrationController.reports);
 
-router.post("/add", registrationController.add);
+
 
 module.exports = router;

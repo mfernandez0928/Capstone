@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of Accounts</title>
+    {{!-- ==== BOOTSTRAP ==== --}}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/styles/custom.css">
+</head>
+<body>
+    <a href="/auth/logout">LOGOUT</a>
+    <div class="container">
+        {{#if title}}
+        <h1>{{title}}</h1>
+        {{/if}}
+
+        <table class="table">
+        <thead>
+            <tr>
+            <th>#</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each accounts}}
+            <tr>
+                <th scope="row">{{@key}}</th>
+                <td>{{this.first_name}}</td>
+                <td>{{this.last_name}}</td>
+                <td>{{this.email}}</td>
+                <td>
+                    <a href="/auth/skillset/{{this.account_id}}">Skill Set</a>
+                    <a href="/auth/updateform/{{this.email}}">edit</a>
+                    <a href="/auth/deleteaccount/{{this.account_id}}">delete</a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+        </table>
+    </div>
+    
+</body>
+</html>

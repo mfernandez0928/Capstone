@@ -1,0 +1,63 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+.user-p {
+    text-align: center;
+    padding-left: 5px;
+    padding-top: 30px;
+}
+.user-p img {
+    width: 100px;
+    border-radius: 50%;
+}
+.side-bar {
+    width: 250px;
+    background: rgb(255, 209, 176);
+    min-height: 100vh;
+}
+
+.side-bar ul {
+    margin-top: 20px;
+    list-style: none;
+    text-align: center;
+}
+.side-bar ul li {
+    font-size: 16px;
+    padding: 15px 0px;
+    padding-left: 20px;
+    transition: 500ms background;
+}
+.side-bar ul li:hover {
+    background-color: transparent;
+}
+.side-bar ul li a {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    letter-spacing: 1px;
+}
+.side-bar ul li a i {
+    padding-right: 10px;
+    font-size: 23px;
+}
+
+.jparent{
+    display: flex;
+}
+
+.jbody {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.jheader {
+
+}
+
+.jmain {
+
+}
