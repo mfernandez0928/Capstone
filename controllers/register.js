@@ -34,7 +34,7 @@ exports.create = (req, res) => {
 
             db.query(
                 'INSERT INTO users SET ?',
-                { email: email, gender: gender, password: hashPassword },
+                {first_name: first_name, last_name: last_name,  email: email, gender: gender, password: hashPassword, role_id: 2 },
                 (error, results) => {
                     if (error) {
                         console.log(error);
