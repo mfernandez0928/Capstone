@@ -195,18 +195,64 @@ exports.delete = (req, res) => {
 
 exports.reports = (req, res) => {
     db.query(
-      "SELECT u.email AS email, r.type_of_request AS type_of_request, r.message AS message, r.created_at AS created_at FROM users AS u INNER JOIN requests as r ON u.id = r.user_id;",
+      "SELECT r.id AS id ,rt.type AS type, u.email AS email, r.type_of_request AS type_of_request, r.message AS message, r.created_at AS created_at FROM users AS u INNER JOIN requests as r ON u.id = r.user_id INNER JOIN request_type AS rt ON rt.id = r.type_of_request;",
       (err, result) => {
         if (err) {
           console.log(err);
         } else {
-            console.log(result)
-          res.render("admin/reports", {
-            title: "Reports",
-            users: result,
-            totalReports: result.length
+          db.query("SELECT rt.type AS type, u.email AS email, r.type_of_request AS type_of_request, r.message AS message, r.created_at AS created_at FROM users AS u INNER JOIN requests as r ON u.id = r.user_id INNER JOIN request_type AS rt ON rt.id = r.type_of_request WHERE type_of_request = 1;",
+              (err, leave) => {
+                db.query("SELECT rt.type AS type, u.email AS email, r.type_of_request AS type_of_request, r.message AS message, r.created_at AS created_at FROM users AS u INNER JOIN requests as r ON u.id = r.user_id INNER JOIN request_type AS rt ON rt.id = r.type_of_request WHERE type_of_request = 2;",
+                (err,absent) => {
+                  db.query("SELECT rt.type AS type, u.email AS email, r.type_of_request AS type_of_request, r.message AS message, r.created_at AS created_at FROM users AS u INNER JOIN requests as r ON u.id = r.user_id INNER JOIN request_type AS rt ON rt.id = r.type_of_request WHERE type_of_request = 3;",
+                  (err,others) => {
+                    res.render("admin/reports", {
+                      title: "Reports",
+                      users: result,
+                      totalReports: result.length,
+                      totalLeave: leave.length,
+                      totalAbsent: absent.length,
+                      totalOthers: others.length
+                  });
+                });
+            });
           });
         }
       }
     );
-  };
+};
+
+exports.absent = (req, res) => {
+  db.query(
+    "SELECT rt.type AS type, u.email AS email, r.type_of_request AS type_of_request, r.message AS message, r.created_at AS created_at FROM users AS u INNER JOIN requests as r ON u.id = r.user_id INNER JOIN request_type AS rt ON rt.id = r.type_of_request;",
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+          console.log(result)
+        res.render("admin/reports", {
+          title: "Reports",
+          users: result,
+          totalReports: result.length
+        });
+      }
+    }
+  );
+};
+
+
+
+exports.deleteRequest = (req, res) => {
+  const id = req.params.id;
+  console.log(id);
+  db.query("DELETE FROM requests WHERE id = ?",
+  id,
+  (err, result) => {
+    if(err){
+      console.log(err);
+    } else {
+      req.flash('success', 'Successfully deleted.');
+      res.redirect('/admin/reports');
+    }
+  })
+}

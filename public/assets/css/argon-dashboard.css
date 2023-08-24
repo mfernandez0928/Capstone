@@ -20386,8 +20386,8 @@ fieldset:disabled .btn {
 
 .btn-primary:hover,
 .btn.bg-gradient-primary:hover {
-  background-color: #5e72e4;
-  border-color: #5e72e4;
+  background-color: #2dce89;
+  border-color: #2dce89;
 }
 
 .btn-primary .btn.bg-outline-primary,
@@ -20581,8 +20581,8 @@ fieldset:disabled .btn {
 
 .btn-danger:hover,
 .btn.bg-gradient-danger:hover {
-  background-color: #f5365c;
-  border-color: #f5365c;
+  background-color: #2dce89;
+  border-color: #2dce89;
 }
 
 .btn-danger .btn.bg-outline-danger,

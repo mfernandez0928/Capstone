@@ -11,6 +11,8 @@ router.post("/add", adminController.add);
 
 router.get("/delete/:employee_id", adminController.delete);
 
+router.get("/deleteRequest/:id", adminController.deleteRequest);
+
 router.post("/update", adminController.update);
 
 router.get("/reports", adminController.reports);
