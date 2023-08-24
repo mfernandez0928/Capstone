@@ -17,6 +17,12 @@ router.post("/update", adminController.update);
 
 router.get("/reports", adminController.reports);
 
+router.get("/leaves", adminController.leaves);
+
+router.get("/absents", adminController.absents);
+
+router.get("/others", adminController.others);
+
 
 
 module.exports = router;
