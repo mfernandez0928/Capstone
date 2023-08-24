@@ -128,7 +128,7 @@ exports.add = (req, res) => {
     email,
     async (err, result) => {
       if (err) {
-        consul.log(err);
+        console.log(err);
       }
       if (email == result.email) {
         // return res.render("employees.hbs", {
