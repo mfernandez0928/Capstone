@@ -6,7 +6,7 @@ const session = require('express-session');
 const flash = require('express-flash');
 const hbs = require('hbs');
 const app = express();
-const port = 8080;
+const port = 7777;
 
 dotenv.config({path:'./.env'});
 app.set("view engine", "hbs");
