@@ -20425,8 +20425,8 @@ fieldset:disabled .btn {
 
 .btn-secondary:hover,
 .btn.bg-gradient-secondary:hover {
-  background-color: #8392ab;
-  border-color: #8392ab;
+  background-color: #2dce89;
+  border-color: #2dce89;
 }
 
 .btn-secondary .btn.bg-outline-secondary,
@@ -20542,8 +20542,8 @@ fieldset:disabled .btn {
 
 .btn-warning:hover,
 .btn.bg-gradient-warning:hover {
-  background-color: #fb6340;
-  border-color: #fb6340;
+  background-color: #2dce89;
+  border-color: #2dce89;
 }
 
 .btn-warning .btn.bg-outline-warning,

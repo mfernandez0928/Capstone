@@ -334,7 +334,7 @@
                                         <div
                                         class="text-end"
                                         >
-                                            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#AddModal">Add</button>
+                                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#AddModal">Add</button>
                                         </div>
                                     </div>
                                 </div>
@@ -360,7 +360,7 @@
                                                 <th scope="col">Name</th>
                                                 <th scope="col">Email</th>
                                                 <th scope="col">Shift</th>
-                                                <th scope="col" colspan="2">Actions</th>
+                                                <th scope="col" colspan="3">Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -403,7 +403,7 @@
                                                                         </select>
                                                                     </div>
                                                                     <div class="modal-footer">
-                                                                        <button class="btn btn-success" type="submit" name="edit" id="edit" >Save Changes</button>
+                                                                        <button class="btn btn-primary" type="submit" name="edit" id="edit" >Save Changes</button>
                                                                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                                                                     </div>
                                                                 </div>
@@ -417,7 +417,26 @@
                                                         <div class="modal-dialog" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
-                                                                    Are you sure you want to delete this user?
+                                                                  <h5 class="text-danger modal-title">Alert !</h5>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                  Are you sure you want to delete this employee?
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <a class="btn btn-danger" href="/admin/delete/{{user_id}}">Delete</a>
+                                                                    <button type="button" class="btn" data-bs-dismiss="modal">Close</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="px-3 text-center">
+                                                    <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#viewModal{{user_id}}">View</button>
+                                                    <div class="modal fade" id="viewModal{{user_id}}" tabindex="-1" role="dialog">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title">Attendance for this month</h5>
                                                                 </div>
                                                         
                                                                 <div class="modal-footer">
@@ -427,11 +446,12 @@
                                                             </div>
                                                         </div>
                                                     </div>
-
-                                                    
                                                 </td>
                                             </tr>
                                             {{/each}}
+                                            <tr>
+                                              <td colspan="6" class="text-end"><small><b>End</b></small></td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div> 
