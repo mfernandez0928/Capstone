@@ -336,7 +336,7 @@
                                         <div
                                         class="text-end"
                                         >
-                                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#AddModal">Add</button>
+                                            <a href="/admin/employees" class="btn btn-primary"><small>Go Back</small></a>
                                         </div>
                                     </div>
                                 </div>
@@ -444,42 +444,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">                            
-                    <div class="modal fade" id="AddModal" tabindex="-1" role="dialog">
-                        <div class="modal-dialog" role="document">
-                            <form action="/admin/add" method="POST" class="form">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title">Add Employee</h5>
-                                    </div>
-                                    <div class="modal-body">
-                                        <input type="text" name="first_name" id="first_name" placeholder="Enter First name" class="form-control mb-3"  required>
-                                        <input type="text" name="last_name" id="last_name" placeholder="Enter Last Name" class="form-control mb-3"  required>
-                                        <input type="email" name="email" id="email" placeholder="Enter Email" class="form-control mb-3"  required>
-                                        <select name="gender" id="gender" class="form-select mb-3">
-                                            <option value="">Select Gender</option>
-                                            <option value="male">Male</option>
-                                            <option value="female">Female</option>
-                                        </select>
-                                        <input type="password" name="password" id="password" placeholder="Enter Password" class="form-control mb-3"  required>
-                                        <input type="password" name="cpassword" id="cpassword" placeholder="Confirm Password" class="form-control mb-3"  required>
-                                        <select name="shift_id" id="shift_id" class="form-select mb-3">
-                                            <option value="">Select Shift</option>
-                                            <option value="1">08:00 AM - 05:00 AM</option>
-                                            <option value="2">06:00 PM - 03:00 AM</option>
-                                            <option value="3">12:00 PM - 09:00 PM</option>
-                                        </select>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button class="btn btn-success" type="submit" name="add" id="add" >Add</button>
-                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>                               
-                </div>
- 
             </div>
         <footer class="footer pt-3">
             <div class="container-fluid">

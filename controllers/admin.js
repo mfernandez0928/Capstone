@@ -27,7 +27,7 @@ exports.attendance = (req, res) => {
   const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
   let month = months[date.getMonth()];
   console.log(month);
-  db.query(`SELECT a.attendance_id AS attendance_id ,a.day AS day, a.month AS month, a.time_in AS time_in, a.time_out AS time_out, u.first_name AS first_name, u.last_name AS last_name, u.id AS id  
+  db.query(`SELECT a.year AS year, a.shift AS shift, a.attendance_id AS attendance_id ,a.day AS day, a.month AS month, a.time_in AS time_in, a.time_out AS time_out, u.first_name AS first_name, u.last_name AS last_name, u.id AS id  
   FROM attendance AS a 
   INNER JOIN users AS u
   ON u.id = a.employee_id
