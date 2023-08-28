@@ -10,18 +10,18 @@
       rel="stylesheet"
     />
     <!-- Nucleo Icons -->
-    <link href="./assets/css/nucleo-icons.css" rel="stylesheet" />
-    <link href="./assets/css/nucleo-svg.css" rel="stylesheet" />
+    <link href="/assets/css/nucleo-icons.css" rel="stylesheet" />
+    <link href="/assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- Font Awesome Icons -->
     <script
       src="https://kit.fontawesome.com/42d5adcbca.js"
       crossorigin="anonymous"
     ></script>
-    <link href="./assets/css/nucleo-svg.css" rel="stylesheet" />
+    <link href="/assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
     <link
       id="pagestyle"
-      href="./assets/css/argon-dashboard.css?v=2.0.4"
+      href="/assets/css/argon-dashboard.css?v=2.0.4"
       rel="stylesheet"
     />
   </head>
@@ -97,32 +97,26 @@
         </div>
         <div class="row mt-4">
           <div class="col-lg-12 mb-lg-0 mb-4">
-            <div class="card z-index-2 h-100">
-              <div class="card-header pb-0 pt-3 bg-transparent">
-                    <div class="container">
-        <h1>Timesheet Application</h1>
-        <form action="/submit" method="post">
-            <form id="timesheet-form">
-            {{!-- <div class="mb-3">
-                <label for="employeeName" class="form-label">Employee Name</label>
-                <input type="text" class="form-control" id="employeeName" required>
-            </div> --}}
-            <div class="mb-3">
-                <label for="date" class="form-label">Date</label>
-                <input type="date" class="form-control" id="date" name="date" required>
-            </div>
-            <div class="mb-3">
-                <label for="clockIn" class="form-label">Clock In Time</label>
-                <input type="time" class="form-control" id="time_in" name="time_in" required>
-            </div>
-            <div class="mb-3">
-                <label for="clockOut" class="form-label">Clock Out Time</label>
-                <input type="time" class="form-control" id="time_out" name="time_out" required>
-            </div>
-        </form>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-    </div>
+            <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+              <div class="my-3 p-3">
+                <h2 class="display-5">Ready to start?</h2>
+              </div>
+              <div class="bg-body shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;">
+                <div class="row">
+                  <div class="col-md-12">
+                    <h2 class="currentDateTime mt-5">{{formattedDateTime}}</h2>
+                  </div>
+                </div>
+                
+               {{#if_eq timesheetToday.status 'in'}}
+                <a href="/employee/clock-out" class="btn btn-danger btn-lg mt-5">
+                  <i class="fas fa-stop" aria-hidden="true"></i>&nbsp;&nbsp;Clock Out
+                </a>
+                {{else}}
+                <a href="/employee/clock-in" class="btn btn-primary btn-lg mt-5">
+                  <i class="fas fa-play" aria-hidden="true"></i>&nbsp;&nbsp;Clock In
+                </a>
+                {{/if_eq}}
               </div>
             </div>
           </div>
@@ -131,13 +125,9 @@
           <div class="container-fluid">
             <div class="row align-items-center justify-content-lg-between">
               <div class="col-lg-6 mb-lg-0 mb-4">
-                <div
-                  class="copyright text-center text-sm text-muted text-lg-start"
-                >
+                <divclass="copyright text-center text-sm text-muted text-lg-start">
                   ©
-                  <script>
-                    document.write(new Date().getFullYear())
-                  </script>, made with
+                  <script> document.write(new Date().getFullYear())</script>, made with
                   <i class="fa fa-heart"></i>
                   by
                   <a
@@ -286,11 +276,11 @@
       </div>
     </div>
     <!--   Core JS Files   -->
-    <script src="./assets/js/core/popper.min.js"></script>
-    <script src="./assets/js/core/bootstrap.min.js"></script>
-    <script src="./assets/js/plugins/perfect-scrollbar.min.js"></script>
-    <script src="./assets/js/plugins/smooth-scrollbar.min.js"></script>
-    <script src="./assets/js/plugins/chartjs.min.js"></script>
+    <script src="/assets/js/core/popper.min.js"></script>
+    <script src="/assets/js/core/bootstrap.min.js"></script>
+    <script src="/assets/js/plugins/perfect-scrollbar.min.js"></script>
+    <script src="/assets/js/plugins/smooth-scrollbar.min.js"></script>
+    <script src="/assets/js/plugins/chartjs.min.js"></script>
     <script>
       var ctx1 = document.getElementById("chart-line").getContext("2d"); var
       gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
@@ -321,7 +311,7 @@
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="./assets/js/argon-dashboard.min.js?v=2.0.4"></script>
+    <script src="/assets/js/argon-dashboard.min.js?v=2.0.4"></script>
   </body>
 
 </html>

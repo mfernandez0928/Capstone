@@ -55,6 +55,7 @@ exports.authenticate = (req, res) => {
 
 };
 
+// Logout 
 exports.logout = (req,res) => {
     res.clearCookie("user_id").status(200);
     res.clearCookie("JWT").status(200);

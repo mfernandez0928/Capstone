@@ -3,8 +3,8 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const db = require('./base.js');
 
+// Create new employee
 exports.create = (req, res) => {
-    // console.log(req.body)
     const { first_name, last_name, email, gender, password, confirmPassword } = req.body;
 
     db.query(

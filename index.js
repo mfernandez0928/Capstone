@@ -36,7 +36,7 @@ app.use("/user", require("./routes/user"));
 app.get("/", (req, res) => {
   res.redirect("/login");
 });
-
+process.env.TZ = 'Asia/Manila';
 app.listen(port, () => {
   console.log("Server is running. Port is " + port);
 });
@@ -57,4 +57,12 @@ hbs.registerHelper("if_like", function (a, b, opts) {
   return opts.inverse(this);
 });
 
+hbs.registerHelper('isdefined', function (value) {
+  return value !== undefined;
+});
+
 hbs.registerHelper("dateFormat", require("handlebars-dateformat"));
+
+hbs.registerHelper('array_item', function(array, index, options) {
+  return options.fn(array[index]);
+});

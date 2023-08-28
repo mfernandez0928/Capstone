@@ -1,3 +1,5 @@
+// Database setup
+
 const mysql = require('mysql2');
 const db = mysql.createConnection({
     database: process.env.DATABASE,

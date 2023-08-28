@@ -1,3 +1,4 @@
+// Admin Routes
 const express = require("express");
 const router = express.Router();
 const registrationController = require("../controler/authaccount");

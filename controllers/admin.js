@@ -10,7 +10,7 @@ LEFT JOIN shift s ON e.shift_id = s.shift_id
 WHERE u.role_id = 2
 ORDER BY u.first_name ASC`;
 
-
+// List of Employees
 exports.list = (req, res) => {
     db.query (
       "SELECT * FROM users WHERE role = 'employee'",
@@ -20,13 +20,14 @@ exports.list = (req, res) => {
     )
 }
 
+// List of Employee's Attendance
 exports.attendance = (req, res) => {
   const user_id = req.params.user_id;
-  console.log(user_id);
+
   const date = new Date();
   const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
   let month = months[date.getMonth()];
-  console.log(month);
+  
   db.query(`SELECT a.year AS year, a.shift AS shift, a.attendance_id AS attendance_id ,a.day AS day, a.month AS month, a.time_in AS time_in, a.time_out AS time_out, u.first_name AS first_name, u.last_name AS last_name, u.id AS id  
   FROM attendance AS a 
   INNER JOIN users AS u
@@ -36,12 +37,12 @@ exports.attendance = (req, res) => {
       if(error) {
         console.log(err);
       } else {
-        console.log(result)
         res.render('admin/attendance', {title: "Attendance", attendance: result, name: `${result[0].first_name} ${result[0].last_name}`, currentMonth: month,})
       }
   });
 }
 
+// Update Employee's Attendance
 exports.updateAttendance = (req, res) => {
   const { day, time_in, time_out, attendance_id, id } = req.body;
   db.query(`UPDATE attendance SET day = ${day}, time_in = "${time_in}", time_out = "${time_out}" WHERE attendance_id = ${attendance_id};`,
@@ -56,10 +57,10 @@ exports.updateAttendance = (req, res) => {
 
 }
 
+// Delete Employee's Attendance
 exports.deleteAttendance = (req, res) => {
   const attendance_id = req.params.attendance_id;
   const id = req.params.id;
-  console.log(attendance_id);
   db.query("DELETE FROM attendance WHERE attendance_id = ?",
   attendance_id,
   (err, result) => {
@@ -72,7 +73,7 @@ exports.deleteAttendance = (req, res) => {
   }) 
 }
 
-
+// List of Employees
 exports.employees = (req, res) => {
     if(req.cookies.role_name != roleAdminName) {
         res.redirect("/login");
@@ -83,13 +84,13 @@ exports.employees = (req, res) => {
         if (err) {
           console.log(err);
         } else {
-          console.log(result)
           res.render("admin/employees/index", { title: "Employee", users: result, employeesCount: result.length, });
         }
       }
     );
 };
 
+// Admin Dashboard
 exports.dashboard = (req, res) => {
     if(req.cookies.role_name != roleAdminName) {
         res.redirect("/login");
@@ -110,7 +111,7 @@ exports.dashboard = (req, res) => {
     );
 };
 
-
+// Create new employee
 exports.add = (req, res) => {
 
     const { first_name, last_name, email, gender, password, cpassword, shift_id } = req.body;
@@ -169,6 +170,7 @@ exports.add = (req, res) => {
     );
 };
 
+// Update Employee
 exports.update = (req, res) => {
     const { first_name, last_name, email, gender, password, cpassword, shift_id, user_id } = req.body;
     db.query(
@@ -182,7 +184,7 @@ exports.update = (req, res) => {
           db.query(
             allEmployeeQueryString,
             (err, result) => {
-                req.flash('error', 'Email already in use.');
+                req.flash('error', 'Email already in use.'); // Validate if email already exist
                 res.redirect('/admin/employees');
             }
           );
@@ -190,7 +192,7 @@ exports.update = (req, res) => {
           db.query(
             allEmployeeQueryString,
             (err, result) => {
-                req.flash('error', 'Password does not match.');
+                req.flash('error', 'Password does not match.');// Validate if password does not match
                 res.redirect('/admin/employees');
             }
           );
@@ -226,6 +228,7 @@ exports.update = (req, res) => {
     })
 };
 
+// Delete Employee
 exports.delete = (req, res) => {
     const employee_id = req.params.employee_id;
     db.query(
@@ -242,6 +245,7 @@ exports.delete = (req, res) => {
     );
 };
 
+// get and count all requests
 exports.reports = (req, res) => {
     db.query(
       "SELECT r.id AS id ,rt.type AS type, u.email AS email, r.type_of_request AS type_of_request, r.message AS message, r.created_at AS created_at FROM users AS u INNER JOIN requests as r ON u.id = r.user_id INNER JOIN request_type AS rt ON rt.id = r.type_of_request;",
@@ -271,6 +275,7 @@ exports.reports = (req, res) => {
     );
 };
 
+// Get and count all Leaves from Request
 exports.leaves = (req, res) => {
   db.query(
     "SELECT r.id AS id ,rt.type AS type, u.email AS email, r.type_of_request AS type_of_request, r.message AS message, r.created_at AS created_at FROM users AS u INNER JOIN requests as r ON u.id = r.user_id INNER JOIN request_type AS rt ON rt.id = r.type_of_request;",
@@ -300,6 +305,7 @@ exports.leaves = (req, res) => {
   );
 };
 
+// Get and count all Absences from Request
 exports.absents = (req, res) => {
   db.query(
     "SELECT r.id AS id ,rt.type AS type, u.email AS email, r.type_of_request AS type_of_request, r.message AS message, r.created_at AS created_at FROM users AS u INNER JOIN requests as r ON u.id = r.user_id INNER JOIN request_type AS rt ON rt.id = r.type_of_request;",
@@ -329,6 +335,7 @@ exports.absents = (req, res) => {
   );
 };
 
+// Get and count all Others from Request
 exports.others = (req, res) => {
   db.query(
     "SELECT r.id AS id ,rt.type AS type, u.email AS email, r.type_of_request AS type_of_request, r.message AS message, r.created_at AS created_at FROM users AS u INNER JOIN requests as r ON u.id = r.user_id INNER JOIN request_type AS rt ON rt.id = r.type_of_request;",
@@ -358,7 +365,7 @@ exports.others = (req, res) => {
   );
 };
 
-
+// Delete a Request
 exports.deleteRequest = (req, res) => {
   const id = req.params.id;
   console.log(id);

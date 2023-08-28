@@ -30,6 +30,15 @@
       <div class="container-fluid py-4">
         <div class="row mt-4">
           <div class="col-lg-12 mb-lg-0 mb-4">
+            <div class="row mb-3 text-center">
+                {{#if messages.success}}
+                <h3 class="alert alert-success text-light">{{messages.success}}</h3>
+                {{/if}}
+
+                {{#if messages.error}}
+                <h3 class="alert alert-danger text-light">{{messages.error}}</h3>
+                {{/if}}
+            </div>
             <div class="card z-index-2 h-100">
               <div class="card-header pb-0 pt-3 bg-transparent">
                 <span class="text-capitalize" style="text-align: right">My Requests</span>
@@ -41,16 +50,16 @@
               <div class="card-body p-3">
                 <table class="table">
                   <thead>
-                    <th>From</th>
-                    <th>To</th>
+                    <th>Type of Request</th>
+                    <th>Subject</th>
                     <th>Message</th>
                     <th>Date Created</th>
                   </thead>
                   <tbody>
                       {{#each requests}}
                         <tr>
-                          <td>{{dateFormat this.from_date "MMMM D, YYYY"}}</td>
-                          <td>{{dateFormat this.to_date "MMMM D, YYYY"}}</td>
+                          <td>{{this.type_of_request}}</td>
+                          <td>{{this.subject}}</td>
                           <td>{{this.message}}</td>
                           <td>{{dateFormat this.created_at "MMMM D, YYYY"}}</td>
                         </tr>

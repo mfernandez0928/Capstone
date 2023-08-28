@@ -36,18 +36,22 @@
                 <a style="text-align: right;" href="/employee/requests" class="font-weight-bold"><i class="fa fa-list"></i> My Requests</a>
               </div>
               <div class="card-body p-3">
-                <form action="/auth/login" method="POST">
+                <form action="/employee/requests/store" method="POST">
                     <div class="row mt-4">
                         <div class="col-lg-6 mb-lg-0 mb-4">
                             <div class="mb-3">
-                                <label for="email">From:</label>
-                                <input type="text" class="form-control" name="from_date" id="from_date">
+                                <label for="email">Type of Request:</label>
+                                 <select name="type_of_request" id="shift_id" class="form-select mb-3">
+                                    <option value="1">Leave</option>
+                                    <option value="2">Absent</option>
+                                    <option value="3">Others</option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-lg-6 mb-lg-0 mb-4">
                             <div class="mb-3">
-                                <label for="email">To:</label>
-                                <input type="text" class="form-control" name="to_date" id="to_date">
+                                <label for="subject">Subject:</label>
+                                <input type="text" class="form-control" name="subject" id="subject">
                             </div>
                         </div>
                     </div>
@@ -61,12 +65,6 @@
                         <div class="d-grid gap-2 d-md-flex justify-content-end">
                             <button class="btn btn-primary btn-login mb-3" type="submit">Submit</button>
                         </div>
-                        {{#if messages.success}}
-                        <div class="alert alert-success">{{messages.success}}</div>
-                        {{/if}}
-                        {{#if messages.error}}
-                        <div class="alert alert-danger">{{messages.error}}</div>
-                        {{/if}}
                     </div>
                 </form>
               </div>
