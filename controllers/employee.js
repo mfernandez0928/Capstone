@@ -45,7 +45,7 @@ exports.dashboard = async (req, res) => {
           if (err) {
             console.log(err);
           } else {
-            if(result) {
+            if(result.length > 0) {
                 result = result[0];
                 this.isTimeIn = true;
             }
