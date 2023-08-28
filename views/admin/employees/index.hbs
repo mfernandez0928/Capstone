@@ -404,7 +404,7 @@
                                                                     </div>
                                                                     <div class="modal-footer">
                                                                         <button class="btn btn-primary" type="submit" name="edit" id="edit" >Save Changes</button>
-                                                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                     </div>
                                                                 </div>
                                                             </form>
@@ -424,28 +424,14 @@
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                     <a class="btn btn-danger" href="/admin/delete/{{user_id}}">Delete</a>
-                                                                    <button type="button" class="btn" data-bs-dismiss="modal">Close</button>
+                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td class="px-3 text-center">
-                                                    <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#viewModal{{user_id}}">View</button>
-                                                    <div class="modal fade" id="viewModal{{user_id}}" tabindex="-1" role="dialog">
-                                                        <div class="modal-dialog" role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title">Attendance for this month</h5>
-                                                                </div>
-                                                        
-                                                                <div class="modal-footer">
-                                                                    <a class="btn btn-danger" href="/admin/delete/{{user_id}}">Delete</a>
-                                                                    <button type="button" class="btn" data-bs-dismiss="modal">Close</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                  <a class="btn btn-secondary" href="/admin/attendance/{{user_id}}">View</a>
                                                 </td>
                                             </tr>
                                             {{/each}}

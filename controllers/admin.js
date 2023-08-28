@@ -10,30 +10,51 @@ LEFT JOIN shift s ON e.shift_id = s.shift_id
 WHERE u.role_id = 2
 ORDER BY u.first_name ASC`;
 
+
 exports.list = (req, res) => {
     db.query (
-        "SELECT * FROM users WHERE role = 'employee'",
-        (error, result) => {
-            res.render('admin/employees/index', {title: "Employees", accounts: result})
-        }
+      "SELECT * FROM users WHERE role = 'employee'",
+      (error, result) => {
+        res.render('admin/employees/index', {title: "Employees", accounts: result})
+      }
     )
 }
+
+exports.attendance = (req, res) => {
+  const user_id = req.params.user_id;
+  console.log(user_id);
+  const date = new Date();
+  const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+  let month = months[date.getMonth()];
+  console.log(month);
+  db.query(`SELECT a.day AS day, a.month AS month, a.time_in AS time_in, a.time_out AS time_out, u.first_name AS first_name, u.last_name AS last_name  
+  FROM attendance AS a 
+  INNER JOIN users AS u
+  ON u.id = a.employee_id
+  WHERE a.month = '${month}' AND a.employee_id = ${user_id};`,
+    (error,result) => {
+      if(error) {
+        console.log(err);
+      } else {
+        console.log(result)
+        res.render('admin/attendance', {title: "Attendance", attendance: result, name: `${result[0].first_name} ${result[0].last_name}`, currentMonth: month,})
+      }
+  });
+}
+
+
 exports.employees = (req, res) => {
     if(req.cookies.role_name != roleAdminName) {
         res.redirect("/login");
-    } 
+    }
     db.query(
         allEmployeeQueryString,
       (err, result) => {
         if (err) {
           console.log(err);
         } else {
-            console.log(result)
-          res.render("admin/employees/index", {
-            title: "Employee",
-            users: result,
-            employeesCount: result.length,
-          });
+          console.log(result)
+          res.render("admin/employees/index", { title: "Employee", users: result, employeesCount: result.length, });
         }
       }
     );
@@ -71,7 +92,7 @@ exports.add = (req, res) => {
           console.log(err);
         }
 
-        if (result.length > 0 && email == result[0].email) {
+        if (result.length > 0) {
           db.query(
             allEmployeeQueryString,
             (err, result) => {
@@ -159,10 +180,14 @@ exports.update = (req, res) => {
                         console.log(err);
                     } else {
                         db.query(
-                            `UPDATE users SET shift_id = "${shift_id}" WHERE user_id = "${user_id}"`,
+                          `UPDATE employees SET shift_id = "${shift_id}" WHERE user_id = "${user_id}"`,
                         (err, result) => {
+                          if(err){
+                            console.log(err);
+                          } else {
                             req.flash('success', 'Successfully updated.');
                             res.redirect('/admin/employees');
+                          } 
                         });
                     }
                 }
@@ -181,13 +206,8 @@ exports.delete = (req, res) => {
         if (err) {
           console.log(err);
         } else {
-          db.query(
-            "SELECT e.employee_id as employee_id ,e.first_name as first_name, e.last_name as last_name, e.email as email, s.time_start as time_start, s.time_end as time_end FROM employee as e INNER JOIN shift as s ON e.shift = s.shift_id;",
-            (err, result) => {
-                req.flash('success', 'Successfully deleted.');
-                res.redirect('/admin/employees');
-            }
-          );
+          req.flash('success', 'Successfully deleted.');
+          res.redirect('/admin/employees');
         }
       }
     );

@@ -7,6 +7,8 @@ router.get("/", adminController.dashboard);
 
 router.get("/employees", adminController.employees);
 
+router.get("/attendance/:user_id", adminController.attendance);
+
 router.post("/add", adminController.add);
 
 router.get("/delete/:employee_id", adminController.delete);
