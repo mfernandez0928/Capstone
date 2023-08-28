@@ -382,31 +382,25 @@
                                                     {{time_out}}
                                                 </td>
                                                 <td class="px-3 text-center">
-                                                    <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#myModal{{user_id}}">Edit</button>
-                                                    <div class="modal fade" id="myModal{{user_id}}" tabindex="-1" role="dialog">
+                                                    <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#myModal{{attendance_id}}">Edit</button>
+                                                    <div class="modal fade" id="myModal{{attendance_id}}" tabindex="-1" role="dialog">
                                                         <div class="modal-dialog" role="document">
-                                                            <form action="/admin/update" method="POST" class="form">
+                                                            <form action="/admin/updateAttendance" method="POST" class="form">
                                                                 <div class="modal-content">
                                                                     <div class="modal-header">
-                                                                        <h5 class="modal-title">Edit Employee</h5>
+                                                                        <h5 class="modal-title">Edit Attendance</h5>
                                                                     </div>
                                                                     <div class="modal-body">
-                                                                        <input type="hidden" name="user_id" id="user_id" value="{{user_id}}">
-                                                                        <input type="text" name="first_name" id="first_name" placeholder="Enter First Name" class="form-control mb-3" value="{{first_name}}" required>
-                                                                        <input type="text" name="last_name" id="last_name" placeholder="Enter Last Name" class="form-control mb-3" value="{{last_name}}" required>
-                                                                        <input type="email" name="email" id="email" placeholder="Enter Email" class="form-control mb-3" value="{{email}}" required>
-                                                                        <select name="gender" id="gender" class="form-select mb-3">
-                                                                            <option value="">Select Gender</option>
-                                                                            <option value="male" {{#if_eq gender 'male'}} selected {{/if_eq}}>Male</option>
-                                                                            <option value="female" {{#if_eq gender 'female'}} selected {{/if_eq}}>Female</option>
-                                                                        </select>
-                                                                        <input type="password" name="password" id="password" placeholder="Enter Password" class="form-control mb-3" >
-                                                                        <input type="password" name="cpassword" id="cpassword" placeholder="Confirm Password" class="form-control mb-3" >
-                                                                        <select name="shift_id" id="shift_id" class="form-select mb-3">
-                                                                            <option value="1" {{#if_eq shift_id '1'}} selected {{/if_eq}}>08:00 AM - 05:00 AM</option>
-                                                                            <option value="2" {{#if_eq shift_id '2'}} selected {{/if_eq}}>06:00 PM - 03:00 AM</option>
-                                                                            <option value="3" {{#if_eq shift_id '3'}} selected {{/if_eq}}>12:00 PM - 09:00 PM</option>
-                                                                        </select>
+                                                                        <input type="hidden" value="{{attendance_id}}" id="attendance_id" name="attendance_id">
+                                                                        <input type="hidden" value="{{id}}" id="id" name="id">
+                                                                        <label for="day" class="form-label">Day</label>
+                                                                        <input type="number" name="day" id="day" class="form-control" value="{{day}}">
+                                                                        <label for="month" class="form-label">Month</label>
+                                                                        <input type="text" name="month" id="month" class="form-control" value="{{month}}" disabled>
+                                                                        <label for="time_in" class="form-label">Time-In <small class="text-secondary">HH:MM:SS</small></label>
+                                                                        <input type="text" name="time_in" id="time_in" class="form-control" placeholder="HH:MM:SS" value="{{time_in}}">
+                                                                        <label for="time_out" class="form-label">Time-Out <small class="text-secondary">HH:MM:SS</small></label>
+                                                                        <input type="text" name="time_out" id="time_out" class="form-control" placeholder="HH:MM:SS" value="{{time_out}}">
                                                                     </div>
                                                                     <div class="modal-footer">
                                                                         <button class="btn btn-primary" type="submit" name="edit" id="edit" >Save Changes</button>
@@ -418,19 +412,19 @@
                                                     </div>
                                                 </td>
                                                 <td class="px-3 text-center">
-                                                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteUserModal{{user_id}}">Delete</button>
-                                                    <div class="modal fade" id="deleteUserModal{{user_id}}" tabindex="-1" role="dialog">
+                                                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteUserModal{{attendance_id}}">Delete</button>
+                                                    <div class="modal fade" id="deleteUserModal{{attendance_id}}" tabindex="-1" role="dialog">
                                                         <div class="modal-dialog" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
                                                                   <h5 class="text-danger modal-title">Alert !</h5>
                                                                 </div>
                                                                 <div class="modal-body">
-                                                                  Are you sure you want to delete this employee?
+                                                                  Are you sure you want to delete this attendance?
                                                                 </div>
                                                                 <div class="modal-footer">
-                                                                    <a class="btn btn-danger" href="/admin/delete/{{user_id}}">Delete</a>
-                                                                    <button type="button" class="btn" data-bs-dismiss="modal">Close</button>
+                                                                    <a class="btn btn-danger" href="/admin/deleteAttendance/{{attendance_id}}/{{id}}">Delete</a>
+                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                 </div>
                                                             </div>
                                                         </div>

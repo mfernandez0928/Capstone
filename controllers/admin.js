@@ -27,7 +27,7 @@ exports.attendance = (req, res) => {
   const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
   let month = months[date.getMonth()];
   console.log(month);
-  db.query(`SELECT a.day AS day, a.month AS month, a.time_in AS time_in, a.time_out AS time_out, u.first_name AS first_name, u.last_name AS last_name  
+  db.query(`SELECT a.attendance_id AS attendance_id ,a.day AS day, a.month AS month, a.time_in AS time_in, a.time_out AS time_out, u.first_name AS first_name, u.last_name AS last_name, u.id AS id  
   FROM attendance AS a 
   INNER JOIN users AS u
   ON u.id = a.employee_id
@@ -40,6 +40,36 @@ exports.attendance = (req, res) => {
         res.render('admin/attendance', {title: "Attendance", attendance: result, name: `${result[0].first_name} ${result[0].last_name}`, currentMonth: month,})
       }
   });
+}
+
+exports.updateAttendance = (req, res) => {
+  const { day, time_in, time_out, attendance_id, id } = req.body;
+  db.query(`UPDATE attendance SET day = ${day}, time_in = "${time_in}", time_out = "${time_out}" WHERE attendance_id = ${attendance_id};`,
+  (err, result) => {
+    if(err){
+      console.log(err);
+    } else {
+      req.flash('success', 'Successfully Updated.');
+      res.redirect(`/admin/attendance/${id}`);
+    }    
+  });
+
+}
+
+exports.deleteAttendance = (req, res) => {
+  const attendance_id = req.params.attendance_id;
+  const id = req.params.id;
+  console.log(attendance_id);
+  db.query("DELETE FROM attendance WHERE attendance_id = ?",
+  attendance_id,
+  (err, result) => {
+    if(err){
+      console.log(err);
+    } else {
+      req.flash('success', 'Successfully deleted.');
+      res.redirect(`/admin/attendance/${id}`);
+    }
+  }) 
 }
 
 
@@ -198,7 +228,6 @@ exports.update = (req, res) => {
 
 exports.delete = (req, res) => {
     const employee_id = req.params.employee_id;
-  
     db.query(
       "DELETE FROM users WHERE id = ?",
       employee_id,

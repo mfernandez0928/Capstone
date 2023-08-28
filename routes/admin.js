@@ -15,7 +15,11 @@ router.get("/delete/:employee_id", adminController.delete);
 
 router.get("/deleteRequest/:id", adminController.deleteRequest);
 
+router.get("/deleteAttendance/:attendance_id/:id", adminController.deleteAttendance);
+
 router.post("/update", adminController.update);
+
+router.post("/updateAttendance", adminController.updateAttendance);
 
 router.get("/reports", adminController.reports);
 
