@@ -390,19 +390,20 @@
                   <table class="table container-fluid table-bordered">
                     <thead>
                       <tr>
-                        <th scope="col" class="px-2">Email</th>
-                        <th scope="col" class="px-2">Subject</th>
-                        <th scope="col" class=" text-center px-2">Message</th>
-                        <th scope="col" colspan="2"  class="text-center px-2">Actions</th>
+                        <th scope="col" class="text-center px-2">Email</th>
+                        <th scope="col" class="text-center px-2">Subject</th>
+                        <th scope="col" class="text-center px-2">Message</th>
                         <th scope="col" class="text-center px-2">Date</th>
+                        <th scope="col" colspan="2"  class="text-center px-2">Actions</th>
                       </tr>
                     </thead>
                     <tbody>
                       {{#each users}}
                       <tr>
-                        <td class="px-3">{{email}}</td>
+                        <td class="text-center px-3">{{email}}</td>
                         <td class="text-center px-3">{{type}}</td>
-                        <td class="px-3"><small class="d-inline-block text-truncate" style="max-width: 170px;">{{message}}</small></td>
+                        <td class="text-center px-3"><small class="d-inline-block text-truncate" style="max-width: 170px;">{{message}}</small></td>
+                        <td class="text-center px-3"><small class="d-inline-block text-truncate" style="max-width: 190px;">{{dateFormat created_at "MMMM D, YYYY"}}</small></td>
                         <td class="text-center px-3">
                           <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#view{{id}}">View</button>
                           <div class="modal fade" id="view{{id}}" tabindex="-1" role="dialog">
@@ -427,8 +428,6 @@
                               </div>
                             </div>
                           </div>
-                        </td>
-                        <td class="text-center px-3">
                           <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteRequest{{id}}">Delete</button>
                           <div class="modal fade" id="deleteRequest{{id}}" tabindex="-1" role="dialog">
                             <div class="modal-dialog" role="document">
@@ -447,7 +446,6 @@
                             </div>
                           </div>
                         </td>
-                        <td class="text-end px-3"><small class="d-inline-block text-truncate" style="max-width: 190px;">{{created_at}}</small></td>
                       </tr>
                       {{/each}}
                       <tr>
