@@ -101,10 +101,13 @@ exports.dashboard = (req, res) => {
         if (err) {
           console.log(err);
         } else {
-          res.render("admin/dashboard", {
-            title: "Dashboard",
-            users: result,
-            employeesCount: result.length,
+          db.query("SELECT * FROM requests",
+          (err,reports) => {
+            if(err){
+
+            } else {
+              res.render("admin/dashboard", { title: "Dashboard", users: result, employeesCount: result.length, reportsCount: reports.length,})
+            }            
           });
         }
       }
